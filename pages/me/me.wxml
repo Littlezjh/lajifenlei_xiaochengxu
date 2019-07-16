@@ -1,0 +1,18 @@
+<!--pages/me/me.wxml-->
+<view class='container'>
+  <view class='avatar'>
+    <image src="{{avatar}}"></image>
+  </view>
+  <view class='name'>{{name}}
+  </view>
+  <view class='setting' data-target="user" bindtap='navTo'>
+    <image mode='aspectFit' class='picture' src='/assets/icons/personInfo.png'></image>
+    <text class='text1'>个人信息</text>
+    <text class='text2'>></text>
+  </view>
+  <view class='setting' data-target="shop" bindtap='navTo'>
+    <image mode='aspectFit' class='picture' src='/assets/icons/creditsShop.png'></image>
+    <text class='text1'>积分商城</text>
+    <text class='text2'>></text>
+  </view>
+</view>

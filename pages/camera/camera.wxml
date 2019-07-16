@@ -1,0 +1,10 @@
+<view class="container">
+  <view class='camera-wrapper'>
+    <camera device-position="{{positionBack?'back':'front'}}" binderror='error' class='camera'></camera>
+  </view>
+  <view class='camera-control'>
+    <text class='content' bindtap='changePosition'>切换</text>
+    <image class='click' mode='aspectFit'src='{{iconPath}}' catchtouchstart='touchStart' catchtouchend='touchEnd'></image>
+    <text class='content' bindtap='choosePhoto'>相册</text>
+  </view>
+</view>

@@ -1,0 +1,43 @@
+page {
+  height: 100%;
+}
+
+.item-container {
+  padding: 25rpx;
+  display: flex;
+  height: 30%;
+}
+
+.item-container .picture {
+  width: 50%;
+  height: 100%;
+  margin: 0 30rpx 0 0;
+  border: 1rpx solid #ddd;
+  box-shadow: 0 0 20rpx #ddd;
+  border-radius: 20rpx;
+}
+
+.item-container .content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: bold;
+  height: 100%;
+  width: 50%;
+}
+.content .text{
+  padding: 30rpx 0 0 0;
+  flex:1;
+}
+.time{
+  font-size: 20rpx;
+  color: gray;
+  flex:0;
+  height: 20%;
+}
+
+.icon{
+  width: 20%;
+  height: 20%;
+  padding: 10rpx 0;
+}

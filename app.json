@@ -1,13 +1,45 @@
 {
   "pages": [
+    "pages/me/me",
+    "pages/zhinan/zhinan",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/camera/camera",
+    "pages/history/history",
+    "pages/personInfo/personInfo",
+    "pages/creditsShop/cerditsShop"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "一扫识垃圾",
     "navigationBarTextStyle": "black"
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "color": "#9B9B9B",
+    "selectedColor": "668B8B",
+    "backgroundColor": "#F8F8F8",
+    "borderStyle": "black",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "识别",
+        "iconPath": "assets/icons/recognition.png",
+        "selectedIconPath": "assets/icons/recognition-active.png"
+      },
+      {
+        "pagePath": "pages/history/history",
+        "text": "历史",
+        "iconPath": "assets/icons/history.png",
+        "selectedIconPath": "assets/icons/history-active.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我的",
+        "iconPath": "assets/icons/me.png",
+        "selectedIconPath": "assets/icons/me-active.png"
+      }
+    ]
+  }
 }

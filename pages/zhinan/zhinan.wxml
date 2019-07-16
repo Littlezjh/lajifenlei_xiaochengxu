@@ -1,0 +1,12 @@
+<!--pages/zhinan/zhinan.wxml-->
+<!-- <view class='page-body'>
+<image class='picture' mode='widthFix' src='/assets/images/zhinan.jpg'></image>
+</view> -->
+
+<view class='page-body'>
+  <movable-area style="height: 100%; width: 100%;" >
+    <movable-view style="height: 100%; width: 100%;" scale='true' direction='all'>
+      <image class='picture' mode='widthFix' src='/assets/images/zhinan.jpg'></image>
+    </movable-view>
+  </movable-area>
+</view>

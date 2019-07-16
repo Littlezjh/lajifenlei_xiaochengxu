@@ -1,0 +1,11 @@
+/* pages/zhinan/zhinan.wxss */
+page{
+  height: 100%;
+}
+.page-body{
+  height: 100%;
+}
+
+.picture{
+  width: 100%;
+}

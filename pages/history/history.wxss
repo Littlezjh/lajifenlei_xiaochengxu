@@ -1,0 +1,15 @@
+/* pages/history/history.wxss */
+
+.hint {
+  display: flex;
+  justify-content: center;
+  color: #696969;
+  font-size: 30rpx;
+}
+
+.history {
+  padding: 10rpx 0;
+  border: 1rpx solid #ddd;
+  box-shadow: 0 0 20rpx #ddd;
+  border-radius: 20rpx;
+}

@@ -1,0 +1,11 @@
+<!--components/history-item/history-item.wxml-->
+<view class='item-container'>
+  <image class='picture' mode='center' src='{{iamgePath}}'></image>
+  <view class='content'>
+    <text class='text'>您的图片识别为：</text>
+    <text class='text'>{{name}}</text>
+    <text class='text'>它属于：{{type}}</text>
+    <image mode='aspectFit' class='icon' src='{{iconPath}}'></image>
+    <text class='time'>{{time}}</text>
+  </view>
+</view>

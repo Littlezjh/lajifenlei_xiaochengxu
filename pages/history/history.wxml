@@ -1,0 +1,17 @@
+<!--pages/history/history.wxml-->
+<view class='container'>
+  <block wx:if="{{historys.length}}">
+    <block wx:for="{{historys}}" wx:key="index">
+      <item class='history' iamgePath="{{item.iamgePath}}" name="{{item.name}}" type="{{item.type}}" time="{{item.time}}" > </item>
+    </block>
+    <view class='hint'>
+      <text>可见最近的10条历史记录</text>
+    </view>
+  </block>
+  <block wx:else>
+    <view class='hint'>
+      <text>暂时没有记录</text>
+    </view>
+  </block>
+
+</view>

@@ -1,0 +1,52 @@
+/* pages/me/me.wxss */
+
+page {
+  height: 100%;
+}
+
+.container {
+  padding: 0;
+}
+
+.avatar {
+  display: flex;
+  justify-content: center;
+  margin-top: 60rpx;
+}
+
+.avatar image {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 100rpx;
+}
+
+.name {
+  text-align: center;
+  color: #696969;
+  font-size: 40rpx;
+  margin: 20rpx 0 60rpx;
+}
+
+.setting {
+  display: flex;
+  padding: 30rpx 0 20rpx 0;
+  border-bottom: 1rpx solid #ddd;
+  font-size: 36rpx;
+  align-items: center;
+}
+
+.setting .text1{
+  flex: 1;
+}
+.setting .text2{
+  width: 40rpx;
+  font-size: 50rpx;
+  color: #00CD00;
+  padding: 0;
+}
+
+.setting .picture {
+  width: 80rpx;
+  height: 50rpx;
+  padding: 0 20rpx 0 20rpx;
+}

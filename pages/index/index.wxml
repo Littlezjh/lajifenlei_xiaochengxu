@@ -1,13 +1,10 @@
-<!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+  <view class="openCamera" bindtap='toCamera'>
+  <image class='image1' src='/assets/images/laji.jpg'></image>
+    <text class="click" >扫一扫垃圾分类</text>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <view class='searchGarbage'bindtap='toGuide'>
+  <image class='image2' mode='aspectFit'src='/assets/images/fenlei.jpg'></image>
+   <text class="click" >垃圾分类宝典</text>
   </view>
 </view>

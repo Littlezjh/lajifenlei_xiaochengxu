@@ -7,6 +7,7 @@ Page({
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
+    content:1232132,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   //事件处理函数
@@ -49,6 +50,18 @@ Page({
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
+    })
+  },
+
+  toCamera:function(){
+    wx.navigateTo({
+      url: '/pages/camera/camera',
+    })
+  },
+
+  toGuide:function(){
+    wx.navigateTo({
+      url: '/pages/zhinan/zhinan',
     })
   }
 })
