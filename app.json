@@ -1,12 +1,12 @@
 {
   "pages": [
-    "pages/me/me",
-    "pages/zhinan/zhinan",
     "pages/index/index",
     "pages/camera/camera",
+    "pages/me/me",
+    "pages/zhinan/zhinan",
     "pages/history/history",
     "pages/personInfo/personInfo",
-    "pages/creditsShop/cerditsShop"
+    "pages/creditsShop/creditsShop"
   ],
   "window": {
     "backgroundTextStyle": "light",

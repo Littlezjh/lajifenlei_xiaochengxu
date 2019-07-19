@@ -1,4 +1,4 @@
-// pages/creditsShop/cerditsShop.js
+// pages/creditsShop/creditsShop.js
 Page({
 
   /**

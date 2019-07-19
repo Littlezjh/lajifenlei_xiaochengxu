@@ -7,6 +7,10 @@ Page({
   data: {
     positionBack: true,
     iconPath: '/assets/icons/takePhoto.png',
+    imageHistory:[],
+    url:'http://127.0.0.1:8000/upload',
+    photoTime:'',
+    
   },
 
   /**
@@ -89,25 +93,47 @@ Page({
       },
     })
   },
+  //按下拍照键时图标变色
   touchStart: function() {
     this.setData({
       iconPath: "/assets/icons/takePhotoTouched.png"
     })
   },
+  //松开拍照键时图标恢复，同时拍摄照片并上传
   touchEnd: function() {
     var that = this;
     this.setData({
       iconPath: "/assets/icons/takePhoto.png"
     })
+    //拍照并将照片位置存到缓存中
     this.camera.takePhoto({
-      quality: 'high',
+      quality: 'normal',
       success: (res) => {
+        imageHistory = wx.getStorageSync('imageHistory')
         that.setData({
-            src: res.tempImagePath
+            src: res.tempImagePath,
           }),
-          wx.setStorageSync('imagePath', res.tempImagePath)
+        imageHistory.push(src)
+        wx.setStorageSync('imageHistory', imageHistory)
       }
     })
-
-  }
+    //获取拍照时间
+    var d = new Date()
+    this.setData({
+      photoTime: d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds()
+    })
+    //上传图片和拍照时间
+    wx.uploadFile({
+      url: this.data.url,
+      filePath: this.data.src,
+      name: 'imageFile',
+      formData: {
+        'photoTime': this.data.photoTime
+      },
+      success(res) {
+        console.log(res.data)
+      }
+    })
+  },
+  
 })
