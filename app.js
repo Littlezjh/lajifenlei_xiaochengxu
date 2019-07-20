@@ -1,4 +1,12 @@
 App({
+  globalData: {
+    userInfo: null,
+    openid: null,
+    login_url:'http://127.0.0.1:8000/login',
+    posImage_url:'http://127.0.0.1:8000/upload',
+    getHistory_url:'http://127.0.0.1:8000/load_history',
+    changeCredits_url:'',
+  },
   onLaunch: function() {
     //   // 展示本地存储能力
     //   var logs = wx.getStorageSync('logs') || []
@@ -44,11 +52,46 @@ App({
         }
       });
     }
+    var that = this;
+    //登录
+    wx.login({
+      success: res => {
+        wx.request({
+          url: this.globalData.login_url,
+          data: {
+            code: res.code,
+            name: name,
+          },
+          success: function (result) {
+            if (result.data != 'none') {
+              that.globalData.openid = result.data
+            } else {
+              wx.showToast({
+                title: '登录失败',
+                icon: 'none',
+                duration: 1500,
+              })
+            }
+          },
+          fail: function () {
+            wx.showToast({
+              title: '网络错误',
+              icon: 'none',
+              duration: 1500,
+            })
+          }
+        })
+      },
+      fail: function () {
+        wx.showToast({
+          title: '网络错误',
+          icon: 'none',
+          duration: 1500,
+        })
+      }
+    })
   },
-  globalData: {
-    userInfo: null,
-    url: null
-  },
+ 
 
   startOperating: function(info) {
     wx.showLoading({

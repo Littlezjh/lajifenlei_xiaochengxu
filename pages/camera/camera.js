@@ -1,4 +1,5 @@
 // pages/camera/camera.js
+const app = getApp()
 Page({
 
   /**
@@ -7,10 +8,12 @@ Page({
   data: {
     positionBack: true,
     iconPath: '/assets/icons/takePhoto.png',
-    imageHistory:[],
-    url:'http://127.0.0.1:8000/upload',
-    photoTime:'',
-    
+    imageHistory: [],
+    url: 'http://127.0.0.1:8000/upload',
+    historyurl: 'http://127.0.0.1:8000/load_history',
+    photoTime: '',
+    kind: '',
+    type: '',
   },
 
   /**
@@ -93,12 +96,15 @@ Page({
       },
     })
   },
+
   //按下拍照键时图标变色
   touchStart: function() {
     this.setData({
       iconPath: "/assets/icons/takePhotoTouched.png"
     })
   },
+
+
   //松开拍照键时图标恢复，同时拍摄照片并上传
   touchEnd: function() {
     var that = this;
@@ -108,12 +114,12 @@ Page({
     //拍照并将照片位置存到缓存中
     this.camera.takePhoto({
       quality: 'normal',
-      success: (res) => {
+      success: res => {
         imageHistory = wx.getStorageSync('imageHistory')
         that.setData({
             src: res.tempImagePath,
           }),
-        imageHistory.push(src)
+          imageHistory.push(src)
         wx.setStorageSync('imageHistory', imageHistory)
       }
     })
@@ -122,18 +128,45 @@ Page({
     this.setData({
       photoTime: d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds()
     })
+
     //上传图片和拍照时间
     wx.uploadFile({
-      url: this.data.url,
+      url: app.globalData.posImage_url,
       filePath: this.data.src,
       name: 'imageFile',
       formData: {
-        'photoTime': this.data.photoTime
+        'photoTime': this.data.photoTime,
+        'openid': app.globalData.openid,
       },
-      success(res) {
-        console.log(res.data)
+      success:res=> {
+        that.setData({
+          kind: res.data.kind,
+          type: res.data.type,
+        })
+        //上传完照片信息后，获取远程最近历史信息
+        wx.request({
+          url: app.globalData.getHistory_url,
+          data: {
+            openid: app.globalData.openid,
+          },
+          success:res=> {
+            that.setData({
+              lastID: res.data
+            })
+            readHistoyr
+          },
+        })
+
       }
     })
   },
-  
+  //读取历史信息，如果不满10个则新加一个，如果大于10个去除最后的，在最前加入1个
+  readHistoyr: function(lastID) {
+    for (var i = 0; i < 10; i++) {
+      this.setData({
+        
+      })
+    }
+  },
+
 })

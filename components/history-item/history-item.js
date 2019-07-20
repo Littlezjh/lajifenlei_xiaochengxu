@@ -8,7 +8,7 @@ Component({
       type: String,
       value: ''
     },
-    name: {
+    kind: {
       type: String,
       value: ''
     },
