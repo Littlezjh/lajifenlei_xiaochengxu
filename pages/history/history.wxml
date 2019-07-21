@@ -2,7 +2,7 @@
 <view class='container'>
   <block wx:if="{{historys.length}}">
     <block wx:for="{{historys}}" wx:key="index">
-      <item class='history' iamgePath="{{item.iamgePath}}" kind="{{item.kind}}" type="{{item.type}}" time="{{item.time}}" > </item>
+      <item class='history' iamgePath="{{item.filePath}}" kind="{{item.kind}}" type="{{item.type}}" time="{{item.time}}" iconPath="{{lajiIcon[item.type]}}"> </item>
     </block>
     <view class='hint'>
       <text>可见最近的10条历史记录</text>

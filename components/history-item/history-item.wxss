@@ -3,9 +3,13 @@ page {
 }
 
 .item-container {
-  padding: 25rpx;
+  padding: 20rpx 10rpx;
+  margin: 0 00rpx;
   display: flex;
   height: 30%;
+  border: 1rpx solid #ddd;
+  box-shadow: 0 0 20rpx #ddd;
+  border-radius: 20rpx;
 }
 
 .item-container .picture {
@@ -17,7 +21,7 @@ page {
   border-radius: 20rpx;
 }
 
-.item-container .content{
+.item-container .content {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,19 +29,21 @@ page {
   height: 100%;
   width: 50%;
 }
-.content .text{
+
+.content .text {
   padding: 30rpx 0 0 0;
-  flex:1;
+  flex: 1;
 }
-.time{
+
+.time {
   font-size: 20rpx;
   color: gray;
-  flex:0;
+  flex: 0;
   height: 20%;
 }
 
-.icon{
+.icon {
   width: 20%;
-  height: 20%;
+  height: 100rpx;
   padding: 10rpx 0;
 }

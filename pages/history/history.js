@@ -32,8 +32,35 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var historys=wx.getStorageSync('historys');
-    console.info(historys);
+    var historys = wx.getStorageSync('imageHistory')
+    this.setData({
+      historys: historys
+    })
+    console.log(this.data.historys)
+    //下载历史信息图片
+    for (var i = 0; i < historys.length; i++) {
+      if (!historys[i].filePath) {
+        wx.downloadFile({
+          url: this.data.downloadurl + '?imagePath=' + historys[i].imagePath,
+          success: res => {
+            if (res.statusCode === 200) {
+              console.log('图片下载成功' + res.tempFilePath)
+              //使用小程序的文件系统，通过小程序的api获取到全局唯一的文件管理器
+              const fs = wx.getFileSystemManager()
+              fs.saveFile({
+                tempFilePath: res.tempFilePath, // 传入一个临时文件路径
+                success(res) {
+                  console.log('图片缓存成功', res.savedFilePath) // res.savedFilePath 为一个本地缓存文件路径 
+                  historys[i]['filePath'] = res.savedFilePath
+                  console.log(historys[i])
+                  wx.setStorageSync('imageHistory', historys)
+                }
+              })
+            }
+          }
+        })
+      }
+    }
   },
 
   /**

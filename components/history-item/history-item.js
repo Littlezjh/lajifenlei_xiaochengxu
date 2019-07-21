@@ -20,14 +20,17 @@ Component({
       type: String,
       value: ''
     },
-
+    iconPath: {
+      type: String,
+      value: ''
+    }
   },
 
   /**
    * 组件的初始数据
    */
   data: {
-    iconPath: '',
+    
   },
 
   attached: function() {

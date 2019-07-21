@@ -1,4 +1,11 @@
 /* pages/history/history.wxss */
+page{
+  height: 100%;
+}
+
+.container{
+  height: 100%;
+}
 
 .hint {
   display: flex;
@@ -8,7 +15,6 @@
 }
 
 .history {
-  padding: 10rpx 0;
   border: 1rpx solid #ddd;
   box-shadow: 0 0 20rpx #ddd;
   border-radius: 20rpx;

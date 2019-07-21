@@ -138,35 +138,45 @@ Page({
         'photoTime': this.data.photoTime,
         'openid': app.globalData.openid,
       },
-      success:res=> {
+      success: res => {
         that.setData({
           kind: res.data.kind,
           type: res.data.type,
         })
-        //上传完照片信息后，获取远程最近历史信息
-        wx.request({
-          url: app.globalData.getHistory_url,
-          data: {
-            openid: app.globalData.openid,
-          },
-          success:res=> {
-            that.setData({
-              lastID: res.data
-            })
-            readHistoyr
-          },
-        })
-
+        //成功上传图片后，更新历史信息
+        var imageHistoyr = []
+        imageHistoyr = wx.getStorageSync("imageHistory")
+        var length = imageHistoyr.length
+        imageHistoyr = this.readHistoyr(imageHistoyr, length)
       }
     })
   },
   //读取历史信息，如果不满10个则新加一个，如果大于10个去除最后的，在最前加入1个
-  readHistoyr: function(lastID) {
-    for (var i = 0; i < 10; i++) {
-      this.setData({
-        
-      })
+  readHistoyr(imageHistoyr, length) {
+    if (length == 0) {
+      var needNum = 10
+    } else {
+      var needNum = 1
     }
+
+    wx.request({
+      url: this.data.historyurl,
+      data: {
+        openid: app.globalData.openid,
+        num: needNum,
+      },
+      success: res => {
+        for (var i = res.data.length - 1; i >= 0; i--) {
+          imageHistoyr.unshift(res.data[i])
+        }
+        if (imageHistoyr.length > 10) {
+          imageHistoyr.pop()
+        }
+        wx.setStorageSync("imageHistory", imageHistoyr)
+      },
+
+    })
+    return imageHistoyr
   },
 
 })
