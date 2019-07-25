@@ -9,11 +9,12 @@ Page({
     positionBack: true,
     iconPath: '/assets/icons/takePhoto.png',
     imageHistory: [],
-    url: 'http://127.0.0.1:8000/upload',
-    historyurl: 'http://127.0.0.1:8000/load_history',
+    // url: 'http://127.0.0.1:8000/upload',
+    // historyurl: 'http://127.0.0.1:8000/load_history',
     photoTime: '',
     kind: '',
     type: '',
+    result:'none'
   },
 
   /**
@@ -113,44 +114,57 @@ Page({
     })
     //拍照并将照片位置存到缓存中
     this.camera.takePhoto({
-      quality: 'normal',
+      quality: 'low',
       success: res => {
-        imageHistory = wx.getStorageSync('imageHistory')
-        that.setData({
-            src: res.tempImagePath,
-          }),
-          imageHistory.push(src)
-        wx.setStorageSync('imageHistory', imageHistory)
-      }
-    })
-    //获取拍照时间
-    var d = new Date()
-    this.setData({
-      photoTime: d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds()
-    })
-
-    //上传图片和拍照时间
-    wx.uploadFile({
-      url: app.globalData.posImage_url,
-      filePath: this.data.src,
-      name: 'imageFile',
-      formData: {
-        'photoTime': this.data.photoTime,
-        'openid': app.globalData.openid,
-      },
-      success: res => {
-        that.setData({
-          kind: res.data.kind,
-          type: res.data.type,
+        console.log('拍摄成功')
+        //获取拍照时间
+        var d = new Date()
+        this.setData({
+          photoTime: d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(),
+          src: res.tempImagePath
         })
-        //成功上传图片后，更新历史信息
-        var imageHistoyr = []
-        imageHistoyr = wx.getStorageSync("imageHistory")
-        var length = imageHistoyr.length
-        imageHistoyr = this.readHistoyr(imageHistoyr, length)
+        //提示正在识别
+        wx.showLoading({
+          title: '正在识别ing',
+          mask:true,
+        })
+        //上传图片和拍照时间
+        wx.uploadFile({
+          url: app.globalData.posImage_url,
+          filePath: this.data.src,
+          name: 'imageFile',
+          formData: {
+            'photoTime': this.data.photoTime,
+            'openid': app.globalData.openid,
+          },
+          success: res => {
+            //关闭提示
+            wx.hideLoading()
+            console.log('图片上传成功')
+            console.log(res.data)
+            var obj = JSON.parse(res.data)
+            // 上传图片成功回调函数
+            that.setData({
+              kind: obj.kind,
+              type: obj.type,
+              result:'block'
+            })
+            //成功上传图片后，更新历史信息
+            var imageHistoyr = wx.getStorageSync("imageHistory")
+            if (!imageHistoyr) {
+              imageHistoyr = []
+            }
+            var length = imageHistoyr.length
+            //读取历史记录
+            imageHistoyr = this.readHistoyr(imageHistoyr, length)
+          }
+        })
       }
     })
+   
+
   },
+
   //读取历史信息，如果不满10个则新加一个，如果大于10个去除最后的，在最前加入1个
   readHistoyr(imageHistoyr, length) {
     if (length == 0) {
@@ -160,7 +174,7 @@ Page({
     }
 
     wx.request({
-      url: this.data.historyurl,
+      url: app.globalData.getHistory_url,
       data: {
         openid: app.globalData.openid,
         num: needNum,
@@ -170,7 +184,8 @@ Page({
           imageHistoyr.unshift(res.data[i])
         }
         if (imageHistoyr.length > 10) {
-          imageHistoyr.pop()
+          var deleted = imageHistoyr.pop()
+          this.deleteTemp(deleted.filePath)
         }
         wx.setStorageSync("imageHistory", imageHistoyr)
       },
@@ -178,5 +193,28 @@ Page({
     })
     return imageHistoyr
   },
+
+  //用于删除缓存中的文件
+  deleteTemp(tempPath) {
+    wx.getSavedFileList({ // 获取文件列表
+      success(res) {
+        console.log(res.fileList)
+        res.fileList.forEach((val, key) => { // 遍历文件列表里的数据        
+          console.log("删除文件")
+          // 删除存储的垃圾数据
+          if (val.filePath == tempPath)
+            wx.removeSavedFile({
+              filePath: val.filePath
+            });
+        })
+      }
+    })
+  },
+
+  ok(){
+    this.setData({
+      result:'none'
+    })
+  }
 
 })

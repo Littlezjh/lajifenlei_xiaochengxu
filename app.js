@@ -2,9 +2,11 @@ App({
   globalData: {
     userInfo: null,
     openid: null,
-    login_url:'http://127.0.0.1:8000/login',
-    posImage_url:'http://127.0.0.1:8000/upload',
-    getHistory_url:'http://127.0.0.1:8000/load_history',
+    login_url:'http://www.littlezhu.top/login',
+    posImage_url:'http://www.littlezhu.top/upload',
+    getHistory_url:'http://www.littlezhu.top/load_history',
+    getTemp_url:'http://www.littlezhu.top/temp',
+    download_url:'http://www.littlezhu.top/download',
     changeCredits_url:'',
   },
   onLaunch: function() {
@@ -65,6 +67,7 @@ App({
           success: function (result) {
             if (result.data != 'none') {
               that.globalData.openid = result.data
+              console.log('登录成功')
             } else {
               wx.showToast({
                 title: '登录失败',

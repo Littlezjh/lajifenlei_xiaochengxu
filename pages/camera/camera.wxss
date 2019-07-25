@@ -1,4 +1,5 @@
 /* pages/camera/camera.wxss */
+
 page {
   height: 100%;
 }
@@ -25,14 +26,71 @@ page {
   padding: 0 100rpx;
   color: white;
   background-color: black;
-  height: 10%
+  height: 10%;
 }
-.click{
+
+.click {
   padding: 0;
   width: 50%;
   height: 80%;
 }
-.content{
+
+.content {
   font-weight: normal;
   font-size: 90%;
+}
+
+.result {
+  position: relative;
+  width: 80%;
+  /* height: 20%; */
+  margin-left: 10%;
+  margin-top: 40%;
+  border-radius: 20rpx;
+  background: white;
+  padding: 10rpx;
+  display: felx;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.result_title {
+  font-size: 30rpx;
+  text-align: center;
+}
+
+.result_kind {
+  color: #000;
+  font-size: 40rpx;
+  text-align: center;
+  padding: 20rpx;
+}
+
+.result_type {
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+  margin-left: 20rpx;
+  /* background-color: #ff5722; */
+  color: #000;
+  padding: 10rpx;
+  width: 90%;
+  border-radius: 5rpx;
+  text-align: center;
+  font-size: 40rpx;
+}
+
+.result_ok {
+  text-align: center;
+  background-color: gray;
+  color: white;
+  width: 30%;
+  height: 30%;
+  margin-left: 35%;
+  font-size: 30rpx;
+  border-radius: 10rpx;
+  size: mini;
+  /* border: 1rpx solid black; */
+  /* padding-top: 5rpx;
+  padding-bottom: 5rpx; */
 }

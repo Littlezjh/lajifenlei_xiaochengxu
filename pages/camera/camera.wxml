@@ -1,10 +1,20 @@
 <view class="container">
   <view class='camera-wrapper'>
-    <camera device-position="{{positionBack?'back':'front'}}" binderror='error' class='camera'></camera>
+    <camera device-position="{{positionBack?'back':'front'}}" binderror='error' class='camera'>
+      <cover-view class="result" style='display:{{result}}'>
+        <cover-view class="result_title">识别结果</cover-view>
+        <cover-view class="result_kind">该物品是 {{kind}}</cover-view>
+        <cover-view class="result_type">它属于 {{type}}</cover-view>
+        <button class="result_ok" catchtap='ok'> 好的 </button>
+        <cover-view>
+
+        </cover-view>
+      </cover-view> 
+    </camera>
   </view>
   <view class='camera-control'>
     <text class='content' bindtap='changePosition'>切换</text>
-    <image class='click' mode='aspectFit'src='{{iconPath}}' catchtouchstart='touchStart' catchtouchend='touchEnd'></image>
+    <image class='click' mode='aspectFit' src='{{iconPath}}' catchtouchstart='touchStart' catchtouchend='touchEnd'></image>
     <text class='content' bindtap='choosePhoto'>相册</text>
   </view>
 </view>
