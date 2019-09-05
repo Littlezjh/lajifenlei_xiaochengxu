@@ -82,15 +82,20 @@ page {
 
 .result_ok {
   text-align: center;
-  background-color: gray;
+  background-color:#46b43c;
   color: white;
   width: 30%;
   height: 30%;
   margin-left: 35%;
-  font-size: 30rpx;
+  font-size: 35rpx;
   border-radius: 10rpx;
   size: mini;
   /* border: 1rpx solid black; */
   /* padding-top: 5rpx;
   padding-bottom: 5rpx; */
+}
+.rectify{
+  text-align: center;
+  margin-top: 20rpx;
+  text-decoration: underline;
 }

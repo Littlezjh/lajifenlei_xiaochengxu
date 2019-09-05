@@ -14,17 +14,19 @@ page {
   margin-top: 60rpx;
 }
 
-.avatar image {
+.avatar open-data {
   width: 200rpx;
   height: 200rpx;
   border-radius: 100rpx;
+  display: block;
+  overflow: hidden;
 }
 
 .name {
   text-align: center;
   color: #696969;
   font-size: 40rpx;
-  margin: 20rpx 0 60rpx;
+  margin: 20rpx 0 10rpx;
 }
 
 .setting {
@@ -35,13 +37,14 @@ page {
   align-items: center;
 }
 
-.setting .text1{
+.setting .text1 {
   flex: 1;
 }
-.setting .text2{
+
+.setting .text2 {
   width: 40rpx;
   font-size: 50rpx;
-  color: #00CD00;
+  color: #00cd00;
   padding: 0;
 }
 
@@ -49,4 +52,11 @@ page {
   width: 80rpx;
   height: 50rpx;
   padding: 0 20rpx 0 20rpx;
+}
+
+.credit{
+  text-align: center;
+  color: #696969;
+  font-size: 30rpx;
+  margin: 0rpx 0 00rpx;
 }

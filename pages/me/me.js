@@ -7,7 +7,8 @@ Page({
    */
   data: {
     avatar: '',
-    name: ''
+    name: '',
+    credits:0
   },
 
   /**
@@ -33,7 +34,18 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    var that=this
+    wx.request({
+      url: app.globalData.getCredits_url,
+      data:{
+        openid: app.globalData.openid
+      },
+      success:res=>{
+        that.setData({
+          credits:res.data
+        })
+      }
+    })
   },
 
   /**

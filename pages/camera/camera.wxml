@@ -6,8 +6,8 @@
         <cover-view class="result_kind">该物品是 {{kind}}</cover-view>
         <cover-view class="result_type">它属于 {{type}}</cover-view>
         <button class="result_ok" catchtap='ok'> 好的 </button>
-        <cover-view>
-
+        <cover-view class="rectify" catchtap="rectifyWrong">
+          结果不正确？点我更正
         </cover-view>
       </cover-view> 
     </camera>

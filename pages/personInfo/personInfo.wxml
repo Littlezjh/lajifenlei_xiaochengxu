@@ -1,2 +1,12 @@
 <!--pages/personInfo/personInfo.wxml-->
-<text>pages/personInfo/personInfo.wxml</text>
+<view class='container'>
+  <view class='input'>
+    <text>电话号码：</text>
+    <input placeholder='{{phoneNumber}}' bindblur='changePhone' type='number'></input>
+  </view>
+  <view class='input'>
+    <text>联系地址：</text>
+    <input placeholder='{{address}}' bindblur="changeAddress"></input>
+  </view>
+  <button class="button_1" type="warn" catchtap="">保存</button>
+</view>

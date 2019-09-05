@@ -1,9 +1,14 @@
 <!--pages/me/me.wxml-->
 <view class='container'>
   <view class='avatar'>
-    <image src="{{avatar}}"></image>
+    <!-- <image src="{{avatar}}"></image> -->
+    <open-data type="userAvatarUrl"></open-data>
   </view>
-  <view class='name'>{{name}}
+  <view class='name'>
+    <open-data type="userNickName"></open-data>
+  </view>
+  <view class='credit'>
+    <text>当前积分为：{{credits}}</text>
   </view>
   <view class='setting' data-target="user" bindtap='navTo'>
     <image mode='aspectFit' class='picture' src='/assets/icons/personInfo.png'></image>

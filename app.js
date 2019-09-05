@@ -1,13 +1,17 @@
+var app = getApp()
 App({
   globalData: {
-    userInfo: null,
-    openid: null,
-    login_url:'http://www.littlezhu.top/login',
-    posImage_url:'http://www.littlezhu.top/upload',
-    getHistory_url:'http://www.littlezhu.top/load_history',
-    getTemp_url:'http://www.littlezhu.top/temp',
-    download_url:'http://www.littlezhu.top/download',
-    changeCredits_url:'',
+    userInfo: '',
+    openid: '',
+    login_url: 'https://www.littlezhu.top/login',
+    posImage_url: 'https://www.littlezhu.top/upload',
+    getHistory_url: 'https://www.littlezhu.top/load_history',
+    getTemp_url: 'https://www.littlezhu.top/temp',
+    download_url: 'https://www.littlezhu.top/download',
+    changeCredits_url: '',
+    getCredits_url:'https://www.littlezhu.top/credits',
+    get_phone_address_url:'https://www.littlezhu.top/get_phone_address',
+    submitInfo_url:'https://www.littlezhu.top/changeInfo',
   },
   onLaunch: function() {
     //   // 展示本地存储能力
@@ -42,31 +46,37 @@ App({
     //     }
     //   })
     // },
-    var name = wx.getStorageSync('name');
-    var avatar = wx.getStorageSync('avatar');
+    // var name = wx.getStorageSync('name');
+    // var avatar = wx.getStorageSync('avatar');
 
-    if (!name || !avatar) {
-      wx.getUserInfo({
-        success: function(res) {
-          var userInfo = res.userInfo;
-          wx.setStorageSync('name', userInfo.nickName);
-          wx.setStorageSync('avatar', userInfo.avatarUrl);
-        }
-      });
-    }
+    // if (!name || !avatar) {
+    //   wx.getUserInfo({
+    //     success: function(res) {
+    //       var userInfo = res.userInfo;
+    //       wx.setStorageSync('name', userInfo.nickName);
+    //       wx.setStorageSync('avatar', userInfo.avatarUrl);
+    //     }
+    //   });
+    // }
     var that = this;
     //登录
+    // wx.checkSession({
+    //   success() {
+    //     console.log('会话还存在')
+    //   },
+    //   fail() {
     wx.login({
       success: res => {
         wx.request({
-          url: this.globalData.login_url,
+          url: that.globalData.login_url,
           data: {
             code: res.code,
-            name: name,
+            name: '腾讯不让我拿用户名',
           },
-          success: function (result) {
-            if (result.data != 'none') {
-              that.globalData.openid = result.data
+          success: res => {
+            if (res.data != 'none') {
+              console.log(res.data)
+              that.globalData.openid = res.data
               console.log('登录成功')
             } else {
               wx.showToast({
@@ -76,7 +86,7 @@ App({
               })
             }
           },
-          fail: function () {
+          fail: function() {
             wx.showToast({
               title: '网络错误',
               icon: 'none',
@@ -85,7 +95,7 @@ App({
           }
         })
       },
-      fail: function () {
+      fail: function() {
         wx.showToast({
           title: '网络错误',
           icon: 'none',
@@ -93,10 +103,13 @@ App({
         })
       }
     })
+    //   },
+    // })
+
 
 
   },
- 
+
 
   startOperating: function(info) {
     wx.showLoading({

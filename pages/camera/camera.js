@@ -14,7 +14,7 @@ Page({
     photoTime: '',
     kind: '',
     type: '',
-    result:'none'
+    result: 'block'//none
   },
 
   /**
@@ -126,7 +126,7 @@ Page({
         //提示正在识别
         wx.showLoading({
           title: '正在识别ing',
-          mask:true,
+          mask: true,
         })
         //上传图片和拍照时间
         wx.uploadFile({
@@ -147,7 +147,7 @@ Page({
             that.setData({
               kind: obj.kind,
               type: obj.type,
-              result:'block'
+              result: 'block'
             })
             //成功上传图片后，更新历史信息
             var imageHistoyr = wx.getStorageSync("imageHistory")
@@ -161,7 +161,7 @@ Page({
         })
       }
     })
-   
+
 
   },
 
@@ -200,21 +200,27 @@ Page({
       success(res) {
         console.log(res.fileList)
         res.fileList.forEach((val, key) => { // 遍历文件列表里的数据        
-          console.log("删除文件")
+
           // 删除存储的垃圾数据
-          if (val.filePath == tempPath)
+          if (val.filePath == tempPath) {
             wx.removeSavedFile({
               filePath: val.filePath
             });
+            console.log("删除文件")
+          }
         })
       }
     })
   },
 
-  ok(){
+  ok() {
     this.setData({
-      result:'none'
+      result: 'none'
     })
+  },
+  
+  rectifyWrong:function(){
+
   }
 
 })

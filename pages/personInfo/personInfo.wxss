@@ -1,1 +1,25 @@
 /* pages/personInfo/personInfo.wxss */
+
+page {
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  display: flex;
+  margin-top: 30rpx;
+  padding: 20rpx;
+  border: 1rpx solid #ddd;
+  border-style: groove;
+  box-shadow: 0 0 10rpx #ddd;
+  border-radius: 20rpx;
+}
+.button_1{
+  margin-top: 40rpx;
+  border-radius: 20rpx;
+  border: 0;
+}
